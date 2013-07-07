@@ -23,7 +23,10 @@ References:
 var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
+var rest = require('restler');
+var util = require('util');
 var HTMLFILE_DEFAULT = "index.html";
+//var HTMLURL_DEFAULT = "https://raw.github.com/vakaras/bitstarter/6fbf8f1abcb51392cdf167ea66752ba9ac80f5dc/index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
 
 var assertFileExists = function(infile) {
@@ -43,8 +46,8 @@ var loadChecks = function(checksfile) {
   return JSON.parse(fs.readFileSync(checksfile));
 };
 
-var checkHtmlFile = function(htmlfile, checksfile) {
-  $ = cheerioHtmlFile(htmlfile);
+var checkHTML = function(html, checksfile) {
+  $ = html;
   var checks = loadChecks(checksfile).sort();
   var out = {};
   for(var ii in checks) {
@@ -54,20 +57,48 @@ var checkHtmlFile = function(htmlfile, checksfile) {
   return out;
 };
 
+var checkHtmlFile = function(htmlfile, checksfile, callback) {
+  callback(checkHTML(cheerioHtmlFile(htmlfile), checksfile));
+};
+
+var checkHtmlUrl = function(url, checksfile, callback) {
+  rest.get(url).on('complete', function(data) {
+    callback(checkHTML(cheerio.load(data), checksfile));
+  });
+};
+
 var clone = function(fn) {
   // Workaround for commander.js issue.
   // http://stackoverflow.com/a/6772648
   return fn.bind({});
 };
 
-if(require.main == module) {
-  program
-    .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
-    .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-    .parse(process.argv);
-  var checkJson = checkHtmlFile(program.file, program.checks);
+var printResult = function (checkJson) {
   var outJson = JSON.stringify(checkJson, null, 4);
   console.log(outJson);
+};
+
+if(require.main == module) {
+  program
+    .option(
+      '-c, --checks <check_file>',
+     'Path to checks.json',
+      clone(assertFileExists),
+      CHECKSFILE_DEFAULT)
+    .option(
+      '-f, --file <html_file>',
+      'Path to index.html',
+       clone(assertFileExists),
+       HTMLFILE_DEFAULT)
+    .option(
+      '-u, --url <html_url>',
+      'Url to index.html')
+    .parse(process.argv);
+  if (typeof(program.url) == "undefined") {
+    checkHtmlFile(program.file, program.checks, printResult);
+  } else {
+    checkHtmlUrl(program.url, program.checks, printResult);
+  }
 } else {
   exports.checkHtmlFile = checkHtmlFile;
 }
