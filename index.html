@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>My First Bitstarter</title>
+    <title>Event Database for Mash-Ups</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
@@ -158,14 +158,16 @@
       <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
       <div class="row-fluid heading">
         <div class="span12">
-          <h1>Product</h1>
+          <h1>Event Database for Mash-Ups</h1>
         </div>
       </div>
       <div class="row-fluid subheading">
         <div class="span12">
           <!-- Special typography from Bootstrap for lead paragraph. -->
           <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->
-          <p class="lead">One sentence description.</p>
+          <p class="lead">
+            Create an events database that could be used for mash-ups.
+          </p>
         </div>
       </div>
       <div class="row-fluid pitch">
@@ -183,12 +185,12 @@
                 look different in horizontal and vertical layouts,
                 illustrating media queries. -->
                 <div class="linediv-l">
-                  <h3>1000</h3> <p>backers</p>
+                  <h3>0</h3> <p>supporters</p>
                 </div>
               </div>
               <div class="span4">
                 <div class="linediv-c">
-                  <h3>$6000</h3> <p>of $10,000</p>
+                  <h3>$0</h3> <p>of $200</p>
                 </div>
               </div>
               <div class="span4">
@@ -209,7 +211,7 @@
           <div class="span6 offset3 order">
             <!-- Standard Bootstrap button. -->
             <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
-            <button class="btn btn-success btn-large">Preorder</button>
+            <button class="btn btn-success btn-large">Donate</button>
           </div>
           <div class="span8 offset2 social">
             <!-- Social buttons are not included in default Bootstrap. -->
@@ -234,16 +236,10 @@
         </div>
         <div class="span5 copy">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Curabitur pellentesque ullamcorper lorem. Pellentesque
-            porttitor malesuada accumsan. Aenean pretium euismod metus.
-            Donec ornare, libero non accumsan accumsan, libero purus
-            hendrerit lacus, cursus euismod sem purus eget elit.
-            Curabitur vitae odio est. Pellentesque volutpat nunc neque,
-            eget mattis erat pretium ut. Suspendisse facilisis mauris eu
-            risus eleifend interdum. Fusce tempus enim viverra, ultrices
-            mauris at, imperdiet dolor. Donec nec sapien eu velit
-            venenatis consectetur.
+            Currently, most event organizers provide information
+            about organized events only in their websites. Furthermore,
+            most of them do not provide any API through which that
+            information could be programmatically taken.
           </p>
         </div>
       </div>
@@ -251,16 +247,21 @@
       <div class="row-fluid section2">
         <div class="span5 offset1 copy copy-right">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Curabitur pellentesque ullamcorper lorem. Pellentesque
-            porttitor malesuada accumsan. Aenean pretium euismod metus.
-            Donec ornare, libero non accumsan accumsan, libero purus
-            hendrerit lacus, cursus euismod sem purus eget elit.
-            Curabitur vitae odio est. Pellentesque volutpat nunc neque,
-            eget mattis erat pretium ut. Suspendisse facilisis mauris eu
-            risus eleifend interdum. Fusce tempus enim viverra, ultrices
-            mauris at, imperdiet dolor. Donec nec sapien eu velit
-            venenatis consectetur.
+            The goal is to create a database of events that can be
+            accessed and analyzed programmatically.
+          </p>
+          <p>
+            The plan is:
+            <ul>
+              <li>Create a website through which event organizers can
+                add events to the database.</li>
+              <li>Create a widget that can be used in organizers'
+                website to display events organized by him.</li>
+              <li>Provide an API through which event organizer can
+                add events to database</li>
+              <li>Provide an API through which events database could
+                be queried.</li>
+            </ul>
           </p>
         </div>
         <div class="span5 asset">
@@ -282,27 +283,12 @@
                    data-toggle="collapse"
                    data-parent="#accordion2"
                    href="#collapseOne">
-                  What does FAQ stand for?
+                  Events?
                 </a>
               </div>
               <div id="collapseOne" class="accordion-body collapse">
                 <div class="accordion-inner">
-                  Frequently Asked Question.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle"
-                   data-toggle="collapse"
-                   data-parent="#accordion2"
-                   href="#collapseTwo">
-                  What's a Frequently Asked Question?
-                </a>
-              </div>
-              <div id="collapseTwo" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  A question which is commonly asked by users.
+                  Firstly, we will try with classical music concerts.
                 </div>
               </div>
             </div>
